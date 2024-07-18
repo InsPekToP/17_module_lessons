@@ -1,7 +1,8 @@
 # from typing import Any
 # from django.forms import BaseModelForm
 # from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.models import User
 from .models import News
 from django.views.generic import (
     ListView,
@@ -24,6 +25,26 @@ class ShowNewsView(ListView):
         ctx = super(ShowNewsView,self).get_context_data(**kwards)
 
         ctx['title'] = 'Главная страница сайта'
+        return ctx
+
+class UserAllNewsView(ListView):
+    model = News
+    template_name = 'blog/user_news.html'
+    context_object_name = 'news'
+    paginate_by = 5
+
+    def get_queryset(self):
+#получаем поль-ля и з url-адресса
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+#тут сложно,надо разбираться
+        return News.objects.filter(avtor=user).order_by('-date')
+
+
+
+    def get_context_data(self, **kwards):
+        ctx = super(UserAllNewsView,self).get_context_data(**kwards)
+
+        ctx['title'] = f"Статьи от пользователя {self.kwargs.get('username')}"
         return ctx
 
 
@@ -75,7 +96,6 @@ class DeleteNewsView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
         if self.request.user == news.avtor:
             return True
         return False
-
 
 
 class CreateNewsView(LoginRequiredMixin,CreateView):

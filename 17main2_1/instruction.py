@@ -23,4 +23,16 @@
 #в цикле мы доходим до 2й странице,и если 2 будет больше 5'-3" то 
 #делаем что-то.Тогда если мы на 3й странице,то условие будет верно т.к. 3>(5-3)
 
-17.39 - надо добавить пару статей
+#делаем страницу автора
+#в views.py(blog) from django.shortcuts import  get_object_or_404
+#from django.contrib.auth.models import User
+#делаем новый шаблон template_name = 'blog/user_news.html'
+#переписываем SQL-запрос,т.к. сейчас будет показываться все записи из табл News
+#def get_queryset():
+#теперь делаем шаблон user_news.html копируем все из home2.html
+
+#и плюс делаем ссылки на авторов в home2.html
+
+#поменяем титул страницы про автора
+#в views.py ctx['title'] = 'Главная страница сайта' --- 
+#--- ctx['title'] = f'Статьи от пользователя {self.kwargs.get('username')}'
