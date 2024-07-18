@@ -1,16 +1,13 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 #Табличка
 class News(models.Model):
     title = models.CharField('Название статьи',max_length=100,unique=True)
-    #unique=True - нельзя создать две статьи с одинаковым названием
     text = models.TextField('Основной текст статьи')
     date = models.DateTimeField('Дата',default=timezone.now)
-    #здесь прописали,что если удаляем польз-ля,то и удаляем все его посты
-    #on_delete=None(не удаляем)(on_delete=models.CASCADE) - удаляем
-    #avtor - поле кот. привязано к опр. автору в табличке поль-ли(User)
     avtor = models.ForeignKey(User,verbose_name='Автор',on_delete=models.CASCADE)
 
 #существуют и другие поля
@@ -24,6 +21,10 @@ class News(models.Model):
     # )
     # shop_sizes = models.CharField(verbose_name='Размер',max_length=2,choices=sizes,default='S')
 
+    def get_absolute_url(self):
+        return reverse('news-detail',kwargs={'pk': self.pk})
+    
+    
 #исправляем News object (1)
     def __str__(self):
         return f'{self.title}'
