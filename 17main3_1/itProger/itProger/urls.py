@@ -11,7 +11,17 @@ urlpatterns = [
     path('profile/',userViews.profile, name='profile'),
     path('user/',authViews.LoginView.as_view(template_name = 'users/user.html'), name='user'),
     path('exit/',authViews.LogoutView.as_view(template_name = 'users/exit.html'), name='exit'),
-    path('pass-reset/',authViews.PasswordResetView.as_view(template_name = 'users/pass_reset.html'), name='pass-reset'),
+    path('pass-reset/',authViews.PasswordResetView.as_view(template_name = 'users/pass_reset.html'),
+          name='pass-reset'),
+#отслеживание востановление пароля
+    path('password_reset_confirm/<uidb64>/<token>/',
+         authViews.PasswordResetConfirmView.as_view(template_name = 'users/password_reset_confirm.html'),
+           name='password_reset_confirm'),
+#отслеживание отправку емейла на востановление пароля
+    path('password_reset_done',
+         authViews.PasswordResetDoneView.as_view(template_name = 'users/password_reset_done.html'),
+           name='password_reset_done'),       
+
     path('', include('blog.urls')),
 ]
 
