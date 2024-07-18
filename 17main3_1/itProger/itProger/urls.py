@@ -13,6 +13,10 @@ urlpatterns = [
     path('exit/',authViews.LogoutView.as_view(template_name = 'users/exit.html'), name='exit'),
     path('pass-reset/',authViews.PasswordResetView.as_view(template_name = 'users/pass_reset.html'),
           name='pass-reset'),
+#эту страничку будем показывать в самую последнюю очередь
+    path('password_reset_complete/',
+    authViews.PasswordResetCompleteView.as_view(template_name = 'users/password_reset_complete.html'),
+          name='password_reset_complete'),
 #отслеживание востановление пароля
     path('password_reset_confirm/<uidb64>/<token>/',
          authViews.PasswordResetConfirmView.as_view(template_name = 'users/password_reset_confirm.html'),

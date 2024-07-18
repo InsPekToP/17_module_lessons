@@ -1,15 +1,15 @@
 {% extends 'blog/base.html' %}
 
   {% block title %}
-    Страница авторизации
+    Востановление пароля
   {%endblock%}
 
   {% block content %}
-    <h1>Востановление парол</h1>
+    <h1>Востановление пароля</h1>
     <form method="post" class="form-register auth">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button class="btn btn-danger" type="submit">Запросить новый пароль</button>
+      {% csrf_token %}
+      {{form.as_p}}
+      <button class="btn btn-danger" type="submit">Запросить новый пароль</button>
     </form>
   {%endblock%}
 
