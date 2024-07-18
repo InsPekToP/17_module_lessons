@@ -7,7 +7,8 @@ from django.views.generic import (
     ListView,
     DetailView,
     CreateView,
-    UpdateView
+    UpdateView,
+    DeleteView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 
@@ -70,6 +71,21 @@ class UpdateNewsView(LoginRequiredMixin,UserPassesTestMixin,UpdateView):
         if self.request.user == news.avtor:
             return True
         return False
+
+
+class DeleteNewsView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
+    model = News
+#переадресация польз-ля после удаления поста
+    success_url = '/'
+#пишем каккой шаблон будем вызывать
+    template_name = 'blog/delete_news.html'
+
+    def test_func(self):
+        news = self.get_object()
+        if self.request.user == news.avtor:
+            return True
+        return False
+
 
 
 class CreateNewsView(LoginRequiredMixin,CreateView):

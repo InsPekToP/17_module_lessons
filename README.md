@@ -13,7 +13,7 @@
 
 
 
-[1]:
+[1]:https://github.com/InsPekToP/17_module_lessons/blob/master/17main1_1/instruction.py
 [2]:
 [3]:
 [4]:

@@ -65,3 +65,19 @@
         # return False
 
 #удалить статью(если она наша)
+#from django.views.generic import DeleteView
+#class DeleteNewsView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
+#переадресация польз-ля после удаления поста
+    #success_url = '/'
+#в urls.py --path('news/<int:pk>/delete',views.DeleteNewsView.as_view(), name='news-delete')
+
+#и добавляем ссылки в base.html
+     # <a href="{% url 'news-add' %}" class="ml-2">
+     #   <button class="btn btn-outline-secondary">Добавить статью</button>
+     # </a>
+
+        #  {% if object.avtor == user %}
+        #  <hr>
+        #  <a href="{% url 'news-update' object.id %}" class="btn btn-info">Обновить статью</a>
+        #  <a href="{% url 'news-delete' object.id %}" class="btn btn-danger">Удалить статью</a>
+        #  {% endif %}
