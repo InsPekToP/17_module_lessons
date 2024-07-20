@@ -14,7 +14,6 @@
 
 
 [1]:https://github.com/InsPekToP/17_module_lessons/blob/master/17main1_1/instruction.py
-[2]:
-[3]:
-[4]:
-[5]:
+[2]:https://github.com/InsPekToP/17_module_lessons/blob/master/17main2_1/instruction.py
+[3]:https://github.com/InsPekToP/17_module_lessons/blob/master/17main3_1/instruction.py
+[4]:https://github.com/InsPekToP/17_module_lessons/blob/master/17main4_1/instruction.py
